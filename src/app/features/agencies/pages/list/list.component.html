@@ -1,0 +1,23 @@
+<app-loading *ngIf="loading"></app-loading>
+<div *ngIf="!loading">
+    <app-navbar title="agencias"></app-navbar>
+    <mat-list>
+        <ng-container *ngFor="let agency of list">
+            <mat-list-item (click)="edit(agency)">
+                <mat-icon mat-list-icon>domain</mat-icon>
+                <div mat-line>{{agency.name}}</div>
+                <div mat-line>{{agency.department}}</div>
+                <div mat-line>{{agency.address}}</div>
+                <mat-icon color="gray" >star_outline</mat-icon>
+              </mat-list-item>
+              
+              <mat-divider></mat-divider>
+        </ng-container>
+       
+    </mat-list>    
+    <div class="fixed">
+        <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
+            <mat-icon>add</mat-icon>
+          </button>
+    </div>
+</div>

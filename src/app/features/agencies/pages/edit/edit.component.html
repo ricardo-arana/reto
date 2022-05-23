@@ -1,0 +1,52 @@
+<app-loading *ngIf="loading"></app-loading>
+<div *ngIf="!loading">
+    <app-navbar title="Detalle de agencia"></app-navbar>
+    <div class="app-edit__content">
+        <form [formGroup]="form" (ngSubmit)="submit()">
+            <mat-form-field >
+                <mat-label>Nombre de agencia</mat-label>
+                <input matInput formControlName="name">
+              </mat-form-field>
+              <mat-form-field >
+                <mat-label>Dirección</mat-label>
+                <input matInput matInput formControlName="address">
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Departamento</mat-label>
+                <input matInput matInput formControlName="department">
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Provincia</mat-label>
+                <input matInput matInput formControlName="province">
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Distrito</mat-label>
+                <input matInput matInput formControlName="district">
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Latitud</mat-label>
+                <input matInput matInput formControlName="latitude">
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Longitud</mat-label>
+                <input matInput matInput formControlName="longitude">
+              </mat-form-field>
+                <small>
+                <a 
+                    [href]="urlmaps | safe: 'url'" 
+                    style="color:#0000FF;text-align:left" 
+                    target="_blank"
+                >
+                    ver en google maps
+                </a>
+                </small>
+                <br />
+              <button mat-flat-button type="submit" color="primary">Actualizar</button><br>
+              <button (click)="goTolist()" mat-flat-button color="accent">Volver</button>
+           </form>
+
+
+ 
+    </div>
+   
+</div>
