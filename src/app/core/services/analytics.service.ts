@@ -16,18 +16,19 @@ export class AnalyticsService {
 
   setVirtualPage(pageName: string, pagePath?: string): void {
     dataLayer.push({
-      event: 'virtualPage',
-      pagePath: pagePath || this.router.url,
-      pageName: pageName ? pageName : ''
+      event: 'gtm.event',
+      title: pageName,
+      path: pagePath || this.router.url,
+      referrer: document.referrer,
     });
   }
 
   setVirtualEvent(category: string, label: string, action: string, metrics?: Metrics): void {
     dataLayer.push({
-      event: 'virtualEvent',
-      category,
-      action,
-      label,
+      event: 'gtm.event',
+      eventCategory: category,
+      eventAction: action,
+      eventLabel: label,
       ...metrics
     });
     
