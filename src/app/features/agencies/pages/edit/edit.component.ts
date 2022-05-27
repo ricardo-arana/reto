@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { map, mergeMap, switchMap } from 'rxjs';
 import { AgencyModel } from 'src/app/core/models/agency.model';
 import { AgenciesService } from 'src/app/core/services/agencies.service';
+import { AnalyticsService } from 'src/app/core/services/analytics.service';
 
 @Component({
   selector: 'app-edit',
@@ -20,11 +21,13 @@ export class EditComponent implements OnInit {
     private activeRouter: ActivatedRoute,
     private fb: FormBuilder,
     private router: Router,
+    private analytics: AnalyticsService,
     ) { 
     this.initForm();
   }
 
   ngOnInit(): void {
+    this.analytics.setVirtualPage('editar de agencia', '/agencies/edit');
     this.getAgencies();
   }
 
@@ -75,13 +78,14 @@ export class EditComponent implements OnInit {
         latitude: +this.form.value.latitude,
         longitude: +this.form.value.longitude
       }
-
+      this.analytics.setVirtualEvent('Agency', 'Boton Actualizar', 'Click');
       this.agenciesSerivce.editAgency(agencyEdited);
       this.router.navigateByUrl('/agencies/list');
     }
   }
 
   goTolist() {
+    this.analytics.setVirtualEvent('Agency', 'Boton Regresar', 'Click');
     this.router.navigateByUrl('/agencies/list');
   }
 
